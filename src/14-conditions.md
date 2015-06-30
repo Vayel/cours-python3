@@ -85,7 +85,7 @@ bon mot de passe.
 Avant même de chercher à comprendre comment ce script marche, essayez de le
 modifier pour changer son comportement. Par exemple:
 
-* Faites en sorte que le mot de passe soit autre chose que « abracadabra ».
+* Faites en sorte que le mot de passe correct soit autre chose que « abracadabra ».
 
 * Traitez l'utilisateur d'idiot lorsqu'il entre le mauvais mot de passe.
 
@@ -179,14 +179,15 @@ True
 True
 ```
 
-En fait, il existe une relation d'ordre sur les chaînes de caractères, que l'on
-appelle pompeusement l'**ordre lexicographique**. Dans les faits, il s'agit
-plus ou moins de l'ordre alphabétique, à ceci près que l'on différentie les
-lettres majuscules et minuscules.
+En fait, il existe une manière d'ordonner les chaînes de caractères (on parle 
+de relation d'ordre sur les chaînes de caractères), que l'on appelle 
+pompeusement l'**ordre lexicographique**. Dans les faits, il s'agit plus ou 
+moins de l'ordre alphabétique, à ceci près que l'on différencie les lettres 
+majuscules et minuscules.
 
 Ne nous attardons pas sur l'ordre lexicographique pour le moment. Vous
 pouvez faire des tests dans la console pour comprendre comment celui-ci
-fonctionne, mais en réalité, il y a peu de chances que vous ayiez besoin de
+fonctionne, mais en réalité, il y a peu de chances que vous ayez besoin de
 comparer les chaînes de caractères autrement qu'avec `==` et `!=` avant un bon
 moment. Nous reviendrons sur ce sujet lorsque nous étudierons la façon dont les
 chaînes sont encodées par Python.
@@ -225,7 +226,7 @@ True
 ```
 
 Gardez bien ces encadrements en tête : ils sont particulièrement efficaces pour
-expliquer des conditions parfois complexes de façon très lisible.
+exprimer de façon très lisible des conditions parfois complexes.
 
 ## Exprimer une condition
 
@@ -258,14 +259,14 @@ première phrase :
 
 ```python
 if saisie == 'abracadabra':     # Si la saisie est égale à 'abracadabra'
-    print('Accès autorisé')     # J'affiche 'accès autorisé'
+    print('Accès autorisé')     # J'affiche 'Accès autorisé'
 ```
 
 Notez que tout ce qui se trouve derrière le symbole `#` désigne des *commentaires*.
 Python ne tient pas compte de ce qui est écrit après ce symbole, donc il s'agit d'un
 moyen très pratique d'expliquer ce que l'on est en train de faire.
 
-La première ligne désigne une *condition*, introduite par la syntaxe `if
+La première ligne désigne une *condition* : par le truchement de la syntaxe `if
 [predicat]:` (n'oubliez pas le `:`), elle sert à introduire un *bloc*
 d'instructions qui seront exécutées uniquement si le prédicat est vérifié.
 
@@ -283,7 +284,14 @@ Notez que les instructions à l'intérieur de ce bloc sont *indentées*,
 c'est-à-dire décalées de quatre espaces par rapport à la ligne du dessus. Cette
 indentation est **obligatoire** en Python. C'est de cette façon qu'il
 différencie les instructions à exécuter tout le temps, de celles qui
-appartiennent au bloc conditionnel.
+appartiennent au bloc conditionnel :
+
+```python
+if predicat:
+    print('Ce texte ne sera affiché que si le prédicat est vrai')
+
+print('Ce texte sera toujours affiché')
+```
 
 
 ### Remarques à propos de l'indentation dans la console interactive
