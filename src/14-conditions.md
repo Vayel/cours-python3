@@ -340,8 +340,43 @@ expressions logiques complexes.
 
 #### Le ET logique : `and`
 
+Jusqu'à présent, nous n'avons effectué des tests que sur un seul prédicat. 
+Notamment, nous n'avons fait que vérifier si le mot de passe était correct. 
+Mais pour se connecter à la majorité des sites, par exemple, il faut également 
+fournir un nom d'utilisateur.
+
+Heureusement, Python fournit un mot-clé pour construire des conditions où 
+plusieurs prédicats doivent être vrais : `and`. Son emploi est très naturel :
+`if [predicat1] and [predicat2]:`. Par exemple :
+
+```python
+if nom == 'Merlin' and passe == 'abracadabra':     # Si le nom est 'Merlin' et le mot de passe 'abracadabra'
+    print('Bienvenue à vous, noble magicien')
+```
+
+Pour bien comprendre le fonctionnement de `and`, examinons tous les cas 
+possibles :
+
+```python
+>>> False and False
+False
+>>> False and True
+False
+>>> True and False
+False
+>>> True and True
+True
+```
+
+Autrement dit, la **conjonction** de deux prédicats est vraie uniquement si 
+les deux prédicats sont vrais.
+
 #### Le OU logique : `or`
 
 #### La négation : `not`
 
 ### Valeur logique des autres types de données
+
+#### Retour sur `and`
+
+http://sametmax.com/quelques-astuces-a-propos-de-and-et-or/
