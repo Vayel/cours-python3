@@ -373,6 +373,42 @@ les deux prédicats sont vrais.
 
 #### Le OU logique : `or`
 
+Bon, notre programme vérifie désormais le nom et le mot de passe. Mais nous 
+aimerions bien avoir un deuxième utilisateur. Pour cela, il va nous falloir 
+vérifier si le couple (nom, mot de passe) correspond au premier utilisateur 
+ou au second.
+
+Python permet de faire cela, très naturellement encore une fois, avec le mot-clé 
+`or` : `if [predicat1] or [predicat2]:`. Par exemple :
+
+```python
+if panneau == 'stop' or feu == 'rouge' :
+    print("S'arrêter")
+```
+
+Comme pour `and`, nous pouvons examiner tous les cas :
+
+```python
+>>> False or False
+False
+>>> False or True
+True
+>>> True or False
+True
+>>> True or True
+True
+```
+
+On constate que la **disjonction** de deux prédicats n'est fausse que lorsque 
+les deux prédicats le sont.
+
+Pour terminer, complétons notre programme :
+
+```python
+if nom == 'Merlin' and mdp == 'abracadabra' or nom == 'Atch' and mpd == 'oum':
+  print('Faites comme chez vous')
+```
+
 #### La négation : `not`
 
 ### Valeur logique des autres types de données
