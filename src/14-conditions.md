@@ -351,8 +351,9 @@ if nom == 'Merlin' and passe == 'abracadabra':     # Si le nom est 'Merlin' et l
 ```
 
 Python dispose de règles de priorité pour interpréter la condition. En
-l'occurrence, l'opérateur d'affectation est prioritaire sur le `and`. On
-n'aurait effectivement pas idée de lire la ligne précédente comme ça :
+l'occurrence, l'opérateur d'égalité est prioritaire sur le `and`, tout comme
+les autres opérateurs de compraison vus plus haut. On n'aurait effectivement
+pas idée de lire la ligne précédente comme ça :
 
 ```python
 if nom == ('Merlin' and passe) == 'abracadabra':     # Si le nom est 'Merlin' et le mot de passe 'abracadabra'
@@ -374,29 +375,33 @@ True
 ```
 
 Autrement dit, la **conjonction** de deux prédicats est vraie si et seulement
-si les deux prédicats le sont.
+si les deux prédicats le sont. Cela peut se généraliser à $n$ prédicats :
 
-Notons également que Python est paresseux, puisqu'il ne regarde pas la valeur
-du second prédicat s'il n'en a pas besoin. Effectivement, à partir du moment
-où le premier est faux, la conjonction le sera, donc inutile de perdre son
-temps à regarder ce que vaut le deuxième prédicat.
+```python
+>>> True and False and True
+False
+>>> (True and False) and True
+False
+>>> True and (False and True)
+False
+```
+
+On remarque que les parenthèses n'ont pas d'importance : quel que soit l'ordre
+d'évaluation des prédicats, le résultat est le même. On dit que l'opérateur
+`and` est **associatif**.
+
+Par contre, cet opérateur n'est pas **commutatif** : `predicat1 and
+predicat2` et `predicat2 and predicat1` n'ont pas les mêmes effets.
+Effectivement, Python est paresseux, puisqu'il ne regarde pas la valeur du
+second prédicat s'il n'en a pas besoin : à partir du moment où le premier est
+faux, la conjonction le sera, donc inutile de perdre son temps à regarder ce
+que vaut le deuxième prédicat.
 
 #### Le OU logique : `or`
 
-Bon, notre programme vérifie désormais le nom et le mot de passe. Mais nous 
-aimerions bien avoir un deuxième utilisateur. Pour cela, il va nous falloir 
-vérifier si le couple (nom, mot de passe) correspond au premier utilisateur 
-ou au second.
-
-Python permet de faire cela, très naturellement encore une fois, avec le mot-clé 
-`or` : `if [predicat1] or [predicat2]:`. Par exemple :
-
-```python
-if panneau == 'stop' or feu == 'rouge' :
-    print("S'arrêter")
-```
-
-Comme pour `and`, nous pouvons examiner tous les cas :
+Le ET logique n'est pas la seule façon de combiner deux prédicats, et il est
+aussi possible de se demander si au moins un est vrai. C'est ce que permet
+l'opérateur `or` :
 
 ```python
 >>> False or False
@@ -409,22 +414,29 @@ True
 True
 ```
 
-On constate que la **disjonction** de deux prédicats n'est fausse que lorsque 
-les deux prédicats le sont.
-
-Pour terminer, complétons notre programme :
+Il s'utilise aussi simplement que `and` pour former une condition : `if
+[predicat1] or [predicat2]:`. Voyez plutôt :
 
 ```python
-if nom == 'Merlin' and mdp == 'abracadabra' or nom == 'Atch' and mpd == 'oum':
-  print('Faites comme chez vous')
+if panneau == 'stop' or feu == 'rouge':
+    print("S'arrêter")
 ```
+
+On parle cette fois-ci de **disjonction** de deux prédicats. On constate
+qu'elle n'est fausse que lorsque les deux prédicats le sont. `or` est associatif
+mais pas commutatif : là encore, Python en fait le moins possible. Dès que le
+premier prédicat est vrai, la disjonction le sera et on peut s'épargner de
+calculer la valeur du second.
+
+On retrouve aussi la règle de priorité entre `or` et les opérateurs de
+comparaison. Il faut savoir qu'il en existe également entre `or` et `and`, le
+second étant prioritaire sur le premier. On fait souvent l'analogie suivante :
+
+Opérateur logique | Opérateur mathématique
+------------------|-----------------------
+`or` | $+$
+`and` | $\times$
 
 #### La négation : `not`
 
-
-
 ### Valeur logique des autres types de données
-
-#### Retour sur `and`
-
-http://sametmax.com/quelques-astuces-a-propos-de-and-et-or/
