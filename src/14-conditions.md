@@ -266,7 +266,7 @@ Notez que tout ce qui se trouve derrière le symbole `#` désigne des *commentai
 Python ne tient pas compte de ce qui est écrit après ce symbole, donc il s'agit d'un
 moyen très pratique d'expliquer ce que l'on est en train de faire.
 
-La première ligne désigne une *condition* : par le truchement de la syntaxe `if
+La première ligne désigne une *condition*, introduite par la syntaxe `if
 [predicat]:` (n'oubliez pas le `:`), elle sert à introduire un *bloc*
 d'instructions qui seront exécutées uniquement si le prédicat est vérifié.
 
@@ -340,13 +340,9 @@ expressions logiques complexes.
 
 #### Le ET logique : `and`
 
-Jusqu'à présent, nous n'avons effectué des tests que sur un seul prédicat. 
-Notamment, nous n'avons fait que vérifier si le mot de passe était correct. 
-Mais pour se connecter à la majorité des sites, par exemple, il faut également 
-fournir un nom d'utilisateur.
-
-Heureusement, Python fournit un mot-clé pour construire des conditions où 
-plusieurs prédicats doivent être vrais : `and`. Son emploi est très naturel :
+Jusqu'à présent, nos conditions ne comportaient qu'un seul prédicat.
+Heureusement, Python permet d'en combiner plusieurs, et notamment de s'assurer
+que tous sont vérifiés, avec le mot-clé `and`. Son emploi est très naturel :
 `if [predicat1] and [predicat2]:`. Par exemple :
 
 ```python
@@ -354,8 +350,17 @@ if nom == 'Merlin' and passe == 'abracadabra':     # Si le nom est 'Merlin' et l
     print('Bienvenue à vous, noble magicien')
 ```
 
-Pour bien comprendre le fonctionnement de `and`, examinons tous les cas 
-possibles :
+Python dispose de règles de priorité pour interpréter la condition. En
+l'occurrence, l'opérateur d'affectation est prioritaire sur le `and`. On
+n'aurait effectivement pas idée de lire la ligne précédente comme ça :
+
+```python
+if nom == ('Merlin' and passe) == 'abracadabra':     # Si le nom est 'Merlin' et le mot de passe 'abracadabra'
+```
+
+`and` est un opérateur dit *binaire*, puisqu'il s'applique à deux objets, en
+l'occurrence à deux prédicats. Pour bien comprendre le fonctionnement de `and`,
+examinons tous les cas possibles pour les valeurs des prédicats :
 
 ```python
 >>> False and False
@@ -368,8 +373,13 @@ False
 True
 ```
 
-Autrement dit, la **conjonction** de deux prédicats est vraie uniquement si 
-les deux prédicats sont vrais.
+Autrement dit, la **conjonction** de deux prédicats est vraie si et seulement
+si les deux prédicats le sont.
+
+Notons également que Python est paresseux, puisqu'il ne regarde pas la valeur
+du second prédicat s'il n'en a pas besoin. Effectivement, à partir du moment
+où le premier est faux, la conjonction le sera, donc inutile de perdre son
+temps à regarder ce que vaut le deuxième prédicat.
 
 #### Le OU logique : `or`
 
@@ -410,6 +420,8 @@ if nom == 'Merlin' and mdp == 'abracadabra' or nom == 'Atch' and mpd == 'oum':
 ```
 
 #### La négation : `not`
+
+
 
 ### Valeur logique des autres types de données
 
