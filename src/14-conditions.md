@@ -429,8 +429,9 @@ premier prédicat est vrai, la disjonction le sera et on peut s'épargner de
 calculer la valeur du second.
 
 On retrouve aussi la règle de priorité entre `or` et les opérateurs de
-comparaison. Il faut savoir qu'il en existe également entre `or` et `and`, le
-second étant prioritaire sur le premier. On fait souvent l'analogie suivante :
+comparaison. De plus, le `and` est prioritaire sur le `or`, on peut même le
+distribuer : `A and (B or C)` a la même valeur logique que `A and B or A and C`
+. D'ailleurs, on fait souvent l'analogie suivante :
 
 Opérateur logique | Opérateur mathématique
 ------------------|-----------------------
@@ -438,5 +439,31 @@ Opérateur logique | Opérateur mathématique
 `and` | $\times$
 
 #### La négation : `not`
+
+Python fournit également un opérateur unaire `not` pour obtenir la valeur
+logique opposée à celle d'un prédicat : `if not predicat:`. Sans surprise, on
+a :
+
+```python
+>>> not False
+True
+>>> not True
+False
+```
+
+`not` est prioritaire sur `and` et `or` mais pas sur les opérateurs de
+comparaison :
+
+```python
+>>> not True or True
+True
+>>> not (True or True)
+False
+>>> 3 > 5 or 3 < 4
+True
+```
+
+Par contre, `not` n'est pas distributif par rapport à `and` ou `or` du fait des
+[lois de De Morgan](https://fr.wikipedia.org/wiki/Lois_de_De_Morgan).
 
 ### Valeur logique des autres types de données
