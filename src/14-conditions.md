@@ -325,6 +325,44 @@ La ligne la plus importante est la dernière, qui signifie, littéralement :
 sa part, remarquez : Python nous explique exactement ce qui le gêne au lieu de
 se contenter de râler.
 
+### Et sinon...
+
+Rappelez-vous le programme d'exemple :
+
+```python
+saisie = input("Saisissez votre mot de passe : ")
+
+if saisie == 'abracadabra':
+    print("Accès autorisé")
+else:
+    print("Accès refusé")
+```
+
+Le `else` permet de définir un bloc d'instructions à exécuter dans le cas où la
+condition n'est pas vérifiée. Il est alors possible d'effectuer un autre test :
+
+```python
+if saisie == 'abracadabra':
+    print("Accès autorisé")
+else:
+    if saisie == 'abra':
+        print("Il serait temps d'évoluer")
+    else:
+        print("Accès refusé")
+```
+
+Oui, c'est laborieux. Heureusement, Python comprend l'instruction `elif`, un
+raccourci de *else if* :
+
+```python
+if saisie == 'abracadabra':
+    print("Accès autorisé")
+elif saisie == 'abra':
+    print("Il serait temps d'évoluer")
+else:
+    print("Accès refusé")
+```
+
 ## Aller plus loin
 
 ### Opérateurs logiques
